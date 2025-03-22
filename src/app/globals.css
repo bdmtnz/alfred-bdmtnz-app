@@ -1,27 +1,24 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "PassionOne";
-  src: url("../../public/fonts/Passion_One/PassionOne-Regular.ttf") format("truetype");
-    font-weight: 200 700;
-    font-display: swap;
-    font-style: normal;
-}
-
-@font-face {
-  font-family: "LilitaOne";
+  font-family: "GothamBlack";
   src:
-    url("../../public/fonts/Lilita_One/LilitaOne-Regular.ttf") format("truetype");
+    url("../../public/fonts/Gotham_Black/GothamBlack.otf") format("opentype");
     font-weight: 200 700;
     font-display: swap;
     font-style: normal;
 }
 
 :root {
+  --font-jumbo: GothamBlack;
+  
   --background: #ffffff;
   --foreground: #171717;
-  --font-passion: PassionOne;
-  --font-lilita: LilitaOne;
+
+  --primary: #006FEE;
+
+  --text-primary: #ededed;
+  --text-secondary: #006FEE;
 }
 
 @theme inline {
@@ -31,13 +28,25 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --font-jumbo: GothamBlack;
+    
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    --primary: #006FEE;
+
+    --text-primary: #006FEE;
+    --text-secondary: #0a0a0a;
   }
 }
 
 body {
-  background: var(--background);
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 1), rgba(17, 30, 62, 0.8), rgba(0, 0, 0, 1)), url('../../public/pictures/splash.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* background: linear-gradient(135deg, #111E3E 0%, #111E3E 0.01%, #020D20 100%); */
