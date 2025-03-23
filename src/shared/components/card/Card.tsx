@@ -2,6 +2,8 @@ import type { FlightData } from "@/shared/models/airplane.model";
 import CardImage from "@public/pictures/card-avion.png";
 import FlightIcon from "@public/icons/flight.svg";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { MouseEventHandler } from "react";
 
 // const aviationResponse = {
 //     "pagination": {
@@ -141,14 +143,24 @@ const Card: React.FC<CardProps> = ({ aviation = null }) => {
         }
     };
 
+    const router = useRouter();
+
+    const handleCardClick = () => {
+        router.push(`/detail?number=${aviation.flight.number}`);
+    }
+
     return (
-        <div className="rounded-xl flex overflow-hidden shadow-lg bg-gray-800 text-white border border-gray-400 h-auto min-h-[235px] bg-gradient-to-r from-[#3F495F] to-[#0E1934]">
+        <button
+            type="button"
+            onClick={handleCardClick}
+            className="rounded-xl flex overflow-hidden shadow-lg bg-gray-800 text-white border border-gray-400 h-auto min-h-[235px] bg-gradient-to-r from-[#3F495F] to-[#0E1934] cursor-pointer"
+        >
             <div className="p-8 w-[55%] flex flex-col justify-between">
                 <div>
-                    <div className="font-bold text-xl mb-2">{aviation.departure.airport}</div>
-                    <p className="text-gray-400 text-base">{aviation.departure.timezone}</p>
+                    <div className="font-bold text-xl mb-2 text-left">{aviation.departure.airport}</div>
+                    <p className="text-gray-400 text-base text-left">{aviation.departure.timezone}</p>
                 </div>
-                <h1 className="bg-gradient-to-r 90deg from-[#006AFF] from-0% to-[#00F9FF] to-100% bg-clip-text text-transparent font-(family-name:--font-jumbo) text-4xl max-w-[120px] w-auto mb-2">
+                <h1 className="bg-gradient-to-r 90deg from-[#006AFF] from-0% to-[#00F9FF] to-100% bg-clip-text text-transparent font-(family-name:--font-jumbo) text-4xl max-w-[120px] w-auto mb-2 text-left">
                     {aviation.departure.iata}
                 </h1>
             </div>
@@ -164,7 +176,7 @@ const Card: React.FC<CardProps> = ({ aviation = null }) => {
                     <FlightIcon />
                 </div>
             </div>          
-        </div>
+        </button>
     );
 };
 
