@@ -1,6 +1,7 @@
 'use client'
 
 import Button from "@/shared/components/button/Button";
+import Card from "@/shared/components/card/Card";
 import Input from "@/shared/components/input/Input";
 import MagnifierIcon from "@public/icons/magnifier.svg";
 import { useRouter } from "next/navigation";
@@ -15,7 +16,7 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
     }
     return (
         <div className="flex flex-col gap-4 bg-transparent">
-            <div className="flex items-center justify-between mt-5 mb-9">
+            <div className="flex items-center justify-between mt-5 mb-6">
                 <h1 className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-4xl">
                     SkyConnect Explorer
                 </h1>
@@ -40,7 +41,15 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
                     />
                 </div>
             </div>
-            <h1>Explorer {keyword ?? 'N/A'}</h1>
+            <div className="h-full bg-blue-500 flex flex-col justify-center">
+                <div className="overflow-y-auto grid grid-cols-2 gap-8 bg-amber-600">
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </div> 
+            </div>         
         </div>
     );
 }
