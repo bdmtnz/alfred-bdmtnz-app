@@ -3,35 +3,42 @@
 import Button from "@/shared/components/button/Button";
 import Input from "@/shared/components/input/Input";
 import MagnifierIcon from "@public/icons/magnifier.svg";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Home: React.FC = () => {
+    const router = useRouter();
+    const [keyword, setKeyword] = useState<string>("");
+
+    const handleKeywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setKeyword(e.target.value);
+    }
+
     return (
-        <div className="w-full grid items-center justify-center h-dvh gap-4 bg-transparent">
-            <div className="grid gap-20">
-                <h1 className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-8xl">
-                    SkyConnect Explorer
-                </h1>
-                <div className="grid gap-6 px-24">
-                    <div className="grid">
-                        <Input
-                            htmlForLabel={""}
-                            label={""}
-                            defaultErrorLabel={""}
-                            placeholder="Buscar aeropuertos..."
-                            isRequired={false}
-                            type={"text"}
-                            name={"KeywordEntry"}
-                        />
-                    </div>
-                    <div className="grid justify-center">                        
-                        <div className="grid w-[240px]">
-                            <Button
-                                icon={<MagnifierIcon/>}
-                                onClick={() => {}}
-                                text="Buscar"
-                            />
-                        </div>
-                    </div>
+        <div className="flex flex-col bg-transparent items-center justify-center gap-[170px]">
+            <h1 className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-8xl text-center">
+                SkyConnect Explorer
+            </h1>
+            <div className="w-full items-center flex flex-col gap-10">
+                <div className="max-w-[780px] w-full">
+                    <Input
+                        htmlForLabel={""}
+                        label={""}
+                        defaultErrorLabel={""}
+                        placeholder="Buscar aeropuertos..."
+                        isRequired={false}
+                        type={"text"}
+                        onChange={handleKeywordChange} 
+                        value={keyword}
+                        name={"KeywordEntry"}
+                    />
+                </div>
+                <div className="grid w-[240px] h-[52px]">
+                    <Button
+                        icon={<MagnifierIcon/>}
+                        onClick={() => router.push(`/explorer?keyword=${keyword}`)}
+                        text="Buscar"
+                    />
                 </div>
             </div>
         </div>

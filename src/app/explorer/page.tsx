@@ -1,8 +1,14 @@
-import Explorer from "@/pages/explorer/Explorer";
+'use client'
 
-const ExplorerPage = () => {
+import Explorer from "@/pages/explorer/Explorer";
+import { useSearchParams } from "next/navigation";
+
+const ExplorerPage = () => {    
+    const searchParams = useSearchParams()
+    const keyword = searchParams?.get('keyword')
+
     return (
-        <Explorer/>
+        <Explorer keywordParam={keyword}/>
     );
 }
 

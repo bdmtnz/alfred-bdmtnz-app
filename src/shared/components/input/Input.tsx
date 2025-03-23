@@ -36,12 +36,14 @@ const Input: React.FC<InputProps> = ({
     reset,
   }) => {
     return (
-      <div className="pb-1">
-        <label
-          htmlFor={htmlForLabel}
-          className="ml-4 text-xs mt-2 text-[#878787] text-bold">
-          {label} {isRequired ? '*' : null}
-        </label>
+      <div className="">
+        {label && (
+          <label
+            htmlFor={htmlForLabel}
+            className="ml-4 text-xs mt-2 text-[#878787] text-bold">
+            {label} {isRequired ? '*' : null}
+          </label>
+        )}
         <div className="relative">
           <input
             name={name}
