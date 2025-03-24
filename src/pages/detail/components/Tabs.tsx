@@ -2,8 +2,6 @@
 
 import type React from 'react';
 import { useState } from 'react';
-import CardImage from "@public/pictures/card-avion.png";
-import Image from "next/image";
 
 interface Tab {
     key: string;
@@ -37,21 +35,8 @@ const Tabs: React.FC<TabsProps> = ({ tabs }) => {
                     </button>
                 ))}
             </div>
-            <div
-                className="rounded-sm flex overflow-hidden shadow-lg bg-gray-800 text-white border border-gray-400 h-auto min-h-[235px] bg-gradient-to-r from-[#3F495F] to-[#0E1934] cursor-pointer"
-            >
-                <div className="p-8 w-[65%] flex flex-col justify-between">
-                    {tabs[activeTab].content}
-                </div>
-                <div className="relative h-full w-[35%]">
-                    <Image
-                        src={CardImage}
-                        alt='airport-img'
-                        layout="fill"
-                        objectFit="cover"
-                        className="opacity-6"
-                    />
-                </div>          
+            <div className='tab-portal overflow-y-auto'>
+                {tabs[activeTab].content}
             </div>
         </div>
     );

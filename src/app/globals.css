@@ -60,3 +60,7 @@ body > div.page {
   max-width: 1440px;
   height: 100%;
 }
+
+body .tab-portal {
+  height: calc(100dvh - 340px);
+}

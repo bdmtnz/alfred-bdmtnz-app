@@ -1,4 +1,6 @@
 import DetailGeneralTab from "./components/DetailGeneralTab";
+import DetailTabLayout from "./components/DetailTabLayout";
+import DetailTimezoneTab from "./components/DetailTimezoneTab";
 import Tabs from "./components/Tabs";
 
 const Detail: React.FC<{ numberParam?: string | null }> = ({ numberParam }) => {
@@ -12,9 +14,11 @@ const Detail: React.FC<{ numberParam?: string | null }> = ({ numberParam }) => {
             <Tabs tabs={[
                 { 
                     key: 'tab-1',
-                    label: 'Tab 1',
+                    label: 'General',
                     isDisabled: false,
-                    content: <DetailGeneralTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
+                    content: <DetailTabLayout content={
+                        <DetailGeneralTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
+                    }/>
                 },
                 { 
                     key: 'tab-2',
@@ -24,15 +28,22 @@ const Detail: React.FC<{ numberParam?: string | null }> = ({ numberParam }) => {
                 },
                 { 
                     key: 'tab-3',
-                    label: 'Tab 3',
+                    label: 'Zona Horaria',
                     isDisabled: false,
-                    content: <div>Tab 3 content</div>
+                    content: <>
+                        <DetailTabLayout content={
+                            <DetailTimezoneTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
+                        }/>
+                        <DetailTabLayout content={
+                            <DetailTimezoneTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
+                        }/>
+                    </>
                 },
                 { 
                     key: 'tab-4',
-                    label: 'Tab 4',
+                    label: 'Estadísticas',
                     isDisabled: true,
-                    content: <div>Tab 4 content</div>
+                    content: <div>Tab 3 content</div>
                 }
             ]}/>
         </div>
