@@ -1,7 +1,7 @@
 'use client';
 
 import Button from "@/shared/components/button/Button";
-import Card from "@/shared/components/card/Card";
+import Card from "@/pages/explorer/components/Card";
 import Input from "@/shared/components/input/Input";
 import MagnifierIcon from "@public/icons/magnifier.svg";
 import { useRouter } from "next/navigation";

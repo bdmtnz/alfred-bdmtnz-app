@@ -25,7 +25,7 @@ const DetailUbicationTab: React.FC<DetailUbicationTabProps> = ({ latitud, longit
                     </div>
                 </div>                        
             }/>
-            <DetailUbicationMap latitud='-17.35546' longitud='-145.50940'/>
+            <DetailUbicationMap latitud={latitud} longitud={longitud}/>
         </div>
     );
 };

@@ -7,10 +7,10 @@ interface DetailGeneralTabProps {
     icaoCode: string;
     country: string;
     cityIata: string;
-    phone: string;
+    phone: string | null;
 }
 
-const DetailGeneralTab: React.FC<DetailGeneralTabProps> = ({ iataCode, icaoCode, country, cityIata, phone }) => {
+const DetailGeneralTab: React.FC<DetailGeneralTabProps> = ({ iataCode, icaoCode, country, cityIata, phone = "N/A" }) => {
     return (
         <DetailTabLayout content={
             <div>

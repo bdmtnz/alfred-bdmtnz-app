@@ -3,6 +3,7 @@ import FlightIcon from "@public/icons/flight.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { Airport } from "@/shared/models/airport.model";
+import { globalStore } from "@/shared/stores/global.store";
 
 interface CardProps {
     airport: Airport;
@@ -11,8 +12,10 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ airport }) => {
 
     const router = useRouter();
+    const { setAirport } = globalStore.getState();
 
     const handleCardClick = () => {
+        setAirport(airport);
         router.push(`/detail?number=${airport.airport_id}`);
     }
 
