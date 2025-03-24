@@ -15,7 +15,7 @@ export interface Airport {
     timezone: string;
 }
 
-export const AIRPLANE_INITIAL: Airport = {
+export const AIRPORT_INITIAL: Airport = {
     id: "3178887",
     gmt: "-10",
     airport_id: "1",
