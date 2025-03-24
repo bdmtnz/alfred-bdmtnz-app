@@ -30,14 +30,14 @@ const Detail: React.FC<{ numberParam?: string | null }> = ({ numberParam }) => {
                     key: 'tab-3',
                     label: 'Zona Horaria',
                     isDisabled: false,
-                    content: <>
+                    content: <div className="flex flex-col gap-7">
                         <DetailTabLayout content={
                             <DetailTimezoneTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
                         }/>
                         <DetailTabLayout content={
                             <DetailTimezoneTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
                         }/>
-                    </>
+                    </div>
                 },
                 { 
                     key: 'tab-4',

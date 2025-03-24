@@ -13,7 +13,7 @@ const DetailTabLayout: React.FC<DetailTabLayoutProps> = ({ content }) => {
             <div className="p-8 w-[65%] flex flex-col justify-between">
                 {content}
             </div>
-            <div className="relative h-full w-[35%]">
+            <div className="relative w-[35%]">
                 <Image
                     src={CardImage}
                     alt='airport-img'
