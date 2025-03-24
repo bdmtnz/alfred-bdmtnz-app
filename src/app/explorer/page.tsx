@@ -3,12 +3,12 @@
 import Explorer from "@/pages/explorer/Explorer";
 import { useSearchParams } from "next/navigation";
 
-const ExplorerPage = () => {    
+const ExplorerPage = () => {
     const searchParams = useSearchParams()
-    const keyword = searchParams?.get('keyword')
+    const keywordParam = searchParams?.get('keyword')
 
     return (
-        <Explorer keywordParam={keyword}/>
+        <Explorer keywordParam={keywordParam}/>
     );
 }
 

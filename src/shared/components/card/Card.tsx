@@ -3,7 +3,6 @@ import CardImage from "@public/pictures/card-avion.png";
 import FlightIcon from "@public/icons/flight.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { MouseEventHandler } from "react";
 
 // const aviationResponse = {
 //     "pagination": {
@@ -181,6 +180,4 @@ const Card: React.FC<CardProps> = ({ aviation = null }) => {
 };
 
 export default Card;
-
-// background: linear-gradient(90deg, #006AFF 0%, #00F9FF 100%);
 
