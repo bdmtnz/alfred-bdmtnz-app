@@ -2,6 +2,7 @@
 
 import Button from "@/shared/components/button/Button";
 import Input from "@/shared/components/input/Input";
+import SpawnToUp from "@/shared/transitions/SpawnToUp";
 import MagnifierIcon from "@public/icons/magnifier.svg";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -15,7 +16,7 @@ const Home: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col bg-transparent items-center justify-center gap-[170px]">
+        <SpawnToUp className="flex flex-col bg-transparent items-center justify-center gap-[170px]">
             <h1 className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-8xl text-center">
                 SkyConnect Explorer
             </h1>
@@ -41,7 +42,7 @@ const Home: React.FC = () => {
                     />
                 </div>
             </div>
-        </div>
+        </SpawnToUp>
     );
 }
 
