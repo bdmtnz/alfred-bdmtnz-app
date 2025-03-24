@@ -8,7 +8,7 @@ interface DetailTabLayoutProps {
 const DetailTabLayout: React.FC<DetailTabLayoutProps> = ({ content }) => {
     return (
         <div
-            className="rounded-sm flex overflow-hidden shadow-lg bg-gray-800 text-white border border-gray-400 h-auto min-h-[235px] bg-gradient-to-r from-[#3F495F] to-[#0E1934]"
+            className="rounded-sm flex overflow-hidden shadow-lg bg-gray-800 text-white border border-gray-400 h-auto bg-gradient-to-r from-[#3F495F] to-[#0E1934]"
         >
             <div className="p-8 w-[65%] flex flex-col justify-between">
                 {content}

@@ -1,5 +1,4 @@
 import DetailGeneralTab from "./components/DetailGeneralTab";
-import DetailTabLayout from "./components/DetailTabLayout";
 import DetailTimezoneTab from "./components/DetailTimezoneTab";
 import Tabs from "./components/Tabs";
 
@@ -16,13 +15,11 @@ const Detail: React.FC<{ numberParam?: string | null }> = ({ numberParam }) => {
                     key: 'tab-1',
                     label: 'General',
                     isDisabled: false,
-                    content: <DetailTabLayout content={
-                        <DetailGeneralTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
-                    }/>
+                    content: <DetailGeneralTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
                 },
                 { 
                     key: 'tab-2',
-                    label: 'Tab 2',
+                    label: 'Ubicación',
                     isDisabled: false,
                     content: <div>Tab 2 content</div>
                 },
@@ -30,14 +27,7 @@ const Detail: React.FC<{ numberParam?: string | null }> = ({ numberParam }) => {
                     key: 'tab-3',
                     label: 'Zona Horaria',
                     isDisabled: false,
-                    content: <div className="flex flex-col gap-7">
-                        <DetailTabLayout content={
-                            <DetailTimezoneTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
-                        }/>
-                        <DetailTabLayout content={
-                            <DetailTimezoneTab iataCode="AAA" icaoCode="NTGA" country="French" cityIata="AAA" phone="Not Avalible"/>
-                        }/>
-                    </div>
+                    content: <DetailTimezoneTab timeZone="Pacific/Tahití" gmt="-10" time={new Date().toISOString()}/>
                 },
                 { 
                     key: 'tab-4',
