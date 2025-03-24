@@ -46,7 +46,6 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
         }
     }, [currentPage])
 
-    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     useEffect(() => {
         if (!keyword) {
             setFiltered(page);
@@ -57,7 +56,7 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
             airport.airport_id.toLowerCase().includes(keyword.toLowerCase())
         );
         setFiltered(filtered);
-    }, [keyword])
+    }, [keyword, page])
 
     return (
         <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
@@ -88,7 +87,7 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
                 </div>
             </div>
             <div className="h-full flex flex-col justify-center overflow-y-auto">
-                {isLoading && <p>Cargando...</p>}
+                {isLoading && <p className="font-bold">Cargando...</p>}
                 {isError && <p>Ocurrió un error al cargar los aeropuertos</p>}
                 {isSuccess && 
                     <div className="grid grid-cols-2 gap-6">
@@ -97,6 +96,7 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
                         ))}
                     </div>
                 }
+                {filtered.length === 0 && !isError && !isLoading && <p className="font-bold text-center">No se encontraron resultados para la busqueda con {keyword}</p>}
             </div>
             <div className="flex justify-center items-center h-auto my-4">
                 <Paginator
