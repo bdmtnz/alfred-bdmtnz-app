@@ -2,6 +2,7 @@
 
 import Button from "@/shared/components/button/Button";
 import Input from "@/shared/components/input/Input";
+import { globalStore } from "@/shared/stores/global.store";
 import SpawnToUp from "@/shared/transitions/SpawnToUp";
 import MagnifierIcon from "@public/icons/magnifier.svg";
 import { useRouter } from "next/navigation";
@@ -9,9 +10,11 @@ import { useState } from "react";
 
 const Home: React.FC = () => {
     const router = useRouter();
-    const [keyword, setKeyword] = useState<string>("");
+    const {setKeyword} = globalStore.getState();
+    const [keywordParam, setKeywordParam] = useState<string>('');
 
     const handleKeywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setKeywordParam(e.target.value);
         setKeyword(e.target.value);
     }
 
@@ -29,15 +32,15 @@ const Home: React.FC = () => {
                         placeholder="Buscar aeropuertos..."
                         isRequired={false}
                         type={"text"}
-                        onChange={handleKeywordChange} 
-                        value={keyword}
+                        onChange={handleKeywordChange}
+                        value={keywordParam}
                         name={"KeywordEntry"}
                     />
                 </div>
                 <div className="grid w-[240px] h-[52px]">
                     <Button
                         icon={<MagnifierIcon/>}
-                        onClick={() => router.push(`/explorer?keyword=${keyword}`)}
+                        onClick={() => router.push('/explorer')}
                         text="Buscar"
                     />
                 </div>

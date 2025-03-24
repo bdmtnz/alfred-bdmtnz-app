@@ -9,7 +9,7 @@ import SpawnToUp from "@/shared/transitions/SpawnToUp";
 import Link from "next/link";
 import useExplorerStateManager from "./hooks/explorer.hooks";
 
-const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) => {
+const Explorer: React.FC = () => {
     const {
         keyword,
         filtered,
@@ -19,8 +19,9 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
         isError,
         currentPage,
         handlePageChange,
-        handleKeywordChange
-    } = useExplorerStateManager(keywordParam);
+        handleKeywordChange,
+        handleSearchClick
+    } = useExplorerStateManager();
 
     return (
         <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
@@ -45,7 +46,7 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
                 <div className="grid w-[218px]">
                     <Button
                         icon={<MagnifierIcon/>}
-                        onClick={() => {}}
+                        onClick={handleSearchClick}
                         text="Buscar"
                     />
                 </div>
