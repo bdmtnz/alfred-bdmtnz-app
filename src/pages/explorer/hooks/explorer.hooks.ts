@@ -1,24 +1,63 @@
-import { useQuery } from "@tanstack/react-query"
-import axios from "axios";
-import ExplorerService from "../services/explorer.service";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
+import type { Airport } from "@/shared/models/airport.model";
+import useGetAirports from "./data.hooks";
 
-const useGetAirports = (pageNumber = 0) => {
-    return useQuery({
-        queryKey: ['get-airports-paginated'],
-        queryFn: async ({ signal }) => {            
-            const CancelToken = axios.CancelToken;
-            const source = CancelToken.source();
+const useExplorerStateManager = (keywordParam?: string | null) => {
+    const [keyword, setKeyword] = useState<string>(keywordParam ?? "");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [page, setPage] = useState<Airport[]>([]);
+    const [filtered, setFiltered] = useState<Airport[]>([]);
+    const [totalPages, setTotalPages] = useState(1);
 
-            const promise = ExplorerService.GetAirports(source, pageNumber, 6);            
-            // Cancel the request if React Query signals to abort
-            signal?.addEventListener('abort', () => {
-                source.cancel('Query was cancelled by React Query')
-            })
+    const { data, isLoading, isSuccess, isError, refetch } = useGetAirports(currentPage - 1);
 
-            return promise;
-        },
-        
-    });
-}
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
 
-export default useGetAirports;
+    const handleKeywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setKeyword(e.target.value);
+    }
+
+    useEffect(() => {
+        if (isSuccess) {
+            setPage(data.data);
+            setFiltered(data.data);
+            setTotalPages(data.pagination.total);  
+        }   
+    }, [isSuccess, data]);
+
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+    useEffect(() => {   
+        if (currentPage) {
+            refetch();
+        }
+    }, [currentPage])
+
+    useEffect(() => {
+        if (!keyword) {
+            setFiltered(page);
+            return;
+        }
+        const filtered = page.filter((airport) => 
+            airport.airport_name.toLowerCase().includes(keyword.toLowerCase()) ||
+            airport.airport_id.toLowerCase().includes(keyword.toLowerCase())
+        );
+        setFiltered(filtered);
+    }, [keyword, page])
+
+    return {
+        keyword,
+        filtered,
+        totalPages,
+        isSuccess,
+        isLoading,
+        isError,
+        currentPage,
+        handlePageChange,
+        handleKeywordChange
+    }
+};
+
+export default useExplorerStateManager;
