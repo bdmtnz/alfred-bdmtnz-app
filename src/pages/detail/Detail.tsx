@@ -30,7 +30,7 @@ const Detail: React.FC<{ airport: Airport, numberParam?: string | null }> = ({ a
                     key: 'tab-3',
                     label: 'Zona Horaria',
                     isDisabled: false,
-                    content: <DetailTimezoneTab timeZone={airport.timezone} gmt={airport.gmt} time={new Date().toISOString()}/>
+                    content: <DetailTimezoneTab timeZone={airport.timezone} gmt={airport.gmt} time={airport.time}/>
                 },
                 { 
                     key: 'tab-4',

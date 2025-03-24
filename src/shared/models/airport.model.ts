@@ -13,6 +13,8 @@ export interface Airport {
     country_name: string;
     phone_number: string | null;
     timezone: string;
+    location: string;
+    time: string;
 }
 
 export const AIRPORT_INITIAL: Airport = {
@@ -29,5 +31,7 @@ export const AIRPORT_INITIAL: Airport = {
     airport_name: "Anaa",
     country_name: "French Polynesia",
     phone_number: null,
-    timezone: "Pacific/Tahiti"
+    timezone: "Pacific/Tahiti",
+    location: "Pacific, Tahiti",
+    time: "19/02/2025, 8:47:51"
 };

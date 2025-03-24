@@ -28,7 +28,7 @@ const Card: React.FC<CardProps> = ({ airport }) => {
             <div className="p-8 w-[55%] flex flex-col justify-between">
                 <div>
                     <div className="font-bold text-xl mb-2 text-left">{airport.airport_name}</div>
-                    <p className="text-gray-400 text-base text-left">{airport.timezone}</p>
+                    <p className="text-gray-400 text-base text-left">{airport.location}</p>
                 </div>
                 <h1 className="bg-gradient-to-r 90deg from-[#006AFF] from-0% to-[#00F9FF] to-100% bg-clip-text text-transparent font-(family-name:--font-jumbo) text-4xl max-w-[120px] w-auto mb-2 text-left">
                     {airport.iata_code}
