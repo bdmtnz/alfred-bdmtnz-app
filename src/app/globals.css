@@ -55,7 +55,7 @@ body {
 }
 
 body > div.page {
-  background-color: rgba(255, 0, 0, 0.075) !important;
+  /* background-color: rgba(255, 0, 0, 0.075) !important; */
   width: 100%;
   max-width: 1440px;
   height: 100%;
