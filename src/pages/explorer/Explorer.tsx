@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import Button from "@/shared/components/button/Button";
@@ -17,6 +18,7 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
     const [keyword, setKeyword] = useState<string>(keywordParam ?? "");
     const [currentPage, setCurrentPage] = useState(1);
     const [page, setPage] = useState<Airport[]>([]);
+    const [filtered, setFiltered] = useState<Airport[]>([]);
     const [totalPages, setTotalPages] = useState(1);
 
     const { data, isLoading, isSuccess, isError, refetch } = useGetAirports(currentPage - 1);
@@ -32,15 +34,30 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
     useEffect(() => {
         if (isSuccess) {
             setPage(data.data);
+            setFiltered(data.data);
             setTotalPages(data.pagination.total);  
         }   
     }, [isSuccess, data]);
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     useEffect(() => {   
         if (currentPage) {
             refetch();
         }
-    }, [currentPage, refetch])
+    }, [currentPage])
+
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+    useEffect(() => {
+        if (!keyword) {
+            setFiltered(page);
+            return;
+        }
+        const filtered = page.filter((airport) => 
+            airport.airport_name.toLowerCase().includes(keyword.toLowerCase()) ||
+            airport.airport_id.toLowerCase().includes(keyword.toLowerCase())
+        );
+        setFiltered(filtered);
+    }, [keyword])
 
     return (
         <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
@@ -75,7 +92,7 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
                 {isError && <p>Ocurrió un error al cargar los aeropuertos</p>}
                 {isSuccess && 
                     <div className="grid grid-cols-2 gap-6">
-                        {page.map((airport) => (
+                        {filtered.map((airport) => (
                             <Card key={airport.airport_id} airport={airport} />
                         ))}
                     </div>
