@@ -6,12 +6,15 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Paginator from "./components/Paginator";
 import SpawnToUp from "@/shared/transitions/SpawnToUp";
+import useGetAirportsPaginated from "./hooks/explorer.hooks";
 
-const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) => {
+const Explorer: React.FC<{ keywordParam?: string | null, pageNumberParam: number }> = ({ keywordParam, pageNumberParam = 1 }) => {
     const router = useRouter();
     const [keyword, setKeyword] = useState<string>(keywordParam ?? "");
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 3; // Ejemplo de total de páginas
+
+    const { data, isSuccess, isLoading, isError } = useGetAirportsPaginated(pageNumberParam);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -49,11 +52,11 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
             </div>
             <div className="h-full flex flex-col justify-center overflow-y-auto">
                 <div className="grid grid-cols-2 gap-6">
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    {isLoading && <div>Loading...</div>}
+                    {isError && <div>Error...</div>}
+                    {isSuccess && data.map((airport) => (
+                        <Card key={airport.airport_id} airport={airport} />
+                    ))}
                 </div> 
             </div>
             <div className="flex justify-center items-center h-auto my-4">
