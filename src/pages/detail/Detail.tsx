@@ -3,9 +3,11 @@ import DetailTimezoneTab from "./components/DetailTimezoneTab";
 import DetailUbicationTab from "./components/ubication/DetailUbicationTab";
 import Tabs from "./components/Tabs";
 import SpawnToUp from "@/shared/transitions/SpawnToUp";
-import type { Airport } from "@/shared/models/airport.model";
+import { globalStore } from "@/shared/stores/global.store";
 
-const Detail: React.FC<{ airport: Airport, numberParam?: string | null }> = ({ airport }) => {
+const Detail: React.FC = () => {
+    const { airport } = globalStore.getState();
+    
     return (
         <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
             <div className="flex items-center justify-center mt-8 mb-6">

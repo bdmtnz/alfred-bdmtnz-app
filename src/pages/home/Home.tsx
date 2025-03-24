@@ -2,22 +2,17 @@
 
 import Button from "@/shared/components/button/Button";
 import Input from "@/shared/components/input/Input";
-import { globalStore } from "@/shared/stores/global.store";
 import SpawnToUp from "@/shared/transitions/SpawnToUp";
 import MagnifierIcon from "@public/icons/magnifier.svg";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import useHomeStateManager from "./hooks/home.hooks";
 
 const Home: React.FC = () => {
-    const router = useRouter();
-    const {setKeyword} = globalStore.getState();
-    const [keywordParam, setKeywordParam] = useState<string>('');
-
-    const handleKeywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setKeywordParam(e.target.value);
-        setKeyword(e.target.value);
-    }
-
+    const {
+        keywordParam,
+        handleKeywordChange,
+        handleRedirect
+    } = useHomeStateManager();
+    
     return (
         <SpawnToUp className="flex flex-col bg-transparent items-center justify-center gap-[170px]">
             <h1 className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-8xl text-center">
@@ -40,7 +35,7 @@ const Home: React.FC = () => {
                 <div className="grid w-[240px] h-[52px]">
                     <Button
                         icon={<MagnifierIcon/>}
-                        onClick={() => router.push('/explorer')}
+                        onClick={handleRedirect}
                         text="Buscar"
                     />
                 </div>

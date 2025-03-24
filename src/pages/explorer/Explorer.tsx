@@ -53,7 +53,7 @@ const Explorer: React.FC = () => {
             </div>
             <div className="h-full flex flex-col justify-center overflow-y-auto">
                 {isLoading && <p className="font-bold text-center">Cargando...</p>}
-                {isError && <p className="font-bold text-center">Ocurrió un error al cargar los aeropuertos</p>}
+                {isError && <p className="font-bold text-center">Límite de peticiones gratis alcanzada</p>}
                 {isSuccess && 
                     <div className="grid grid-cols-2 gap-6">
                         {filtered.map((airport) => (
