@@ -37,7 +37,7 @@ const Home: React.FC = () => {
                 <div className="grid w-[240px] h-[52px]">
                     <Button
                         icon={<MagnifierIcon/>}
-                        onClick={() => router.push(`/explorer?keyword=${keyword}`)}
+                        onClick={() => router.push(`/explorer?pageNumber=1&keyword=${keyword}`)}
                         text="Buscar"
                     />
                 </div>

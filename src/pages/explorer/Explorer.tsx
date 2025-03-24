@@ -1,20 +1,22 @@
+'use client';
+
 import Button from "@/shared/components/button/Button";
 import Card from "@/shared/components/card/Card";
 import Input from "@/shared/components/input/Input";
 import MagnifierIcon from "@public/icons/magnifier.svg";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Paginator from "./components/Paginator";
 import SpawnToUp from "@/shared/transitions/SpawnToUp";
-import useGetAirportsPaginated from "./hooks/explorer.hooks";
+import ExplorerService from "./services/explorer.service";
+import type { Airport } from "@/shared/models/airport.model";
 
-const Explorer: React.FC<{ keywordParam?: string | null, pageNumberParam: number }> = ({ keywordParam, pageNumberParam = 1 }) => {
+const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) => {
     const router = useRouter();
     const [keyword, setKeyword] = useState<string>(keywordParam ?? "");
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 3; // Ejemplo de total de páginas
-
-    const { data, isSuccess, isLoading, isError } = useGetAirportsPaginated(pageNumberParam);
+    const [page, setPage] = useState<Airport[]>([]);
+    const totalPages = 3;
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -23,6 +25,17 @@ const Explorer: React.FC<{ keywordParam?: string | null, pageNumberParam: number
     const handleKeywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setKeyword(e.target.value);
     }
+
+    useEffect(() => {
+        if (currentPage) {
+            ExplorerService.GetAirports(currentPage - 1, 6).then((response) => {
+                console.log(response);
+                setPage(response.data);
+            });
+        }
+    }
+    , [currentPage]);
+
     return (
         <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
             <div className="flex items-center justify-between mt-5 mb-6">
@@ -52,9 +65,7 @@ const Explorer: React.FC<{ keywordParam?: string | null, pageNumberParam: number
             </div>
             <div className="h-full flex flex-col justify-center overflow-y-auto">
                 <div className="grid grid-cols-2 gap-6">
-                    {isLoading && <div>Loading...</div>}
-                    {isError && <div>Error...</div>}
-                    {isSuccess && data.map((airport) => (
+                    {page.map((airport) => (
                         <Card key={airport.airport_id} airport={airport} />
                     ))}
                 </div> 
