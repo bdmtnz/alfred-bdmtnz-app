@@ -8,16 +8,18 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Paginator from "./components/Paginator";
 import SpawnToUp from "@/shared/transitions/SpawnToUp";
-import ExplorerService from "./services/explorer.service";
 import type { Airport } from "@/shared/models/airport.model";
 import Link from "next/link";
+import useGetAirports from "./hooks/explorer.hooks";
 
 const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) => {
     const router = useRouter();
     const [keyword, setKeyword] = useState<string>(keywordParam ?? "");
     const [currentPage, setCurrentPage] = useState(1);
     const [page, setPage] = useState<Airport[]>([]);
-    const totalPages = 3;
+    const [totalPages, setTotalPages] = useState(1);
+
+    const { data, isLoading, isSuccess, isError, refetch } = useGetAirports(currentPage - 1);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -28,13 +30,17 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
     }
 
     useEffect(() => {
+        if (isSuccess) {
+            setPage(data.data);
+            setTotalPages(data.pagination.total);  
+        }   
+    }, [isSuccess, data]);
+
+    useEffect(() => {   
         if (currentPage) {
-            ExplorerService.GetAirports(currentPage - 1, 6).then((response) => {
-                setPage(response.data);
-            });
+            refetch();
         }
-    }
-    , [currentPage]);
+    }, [currentPage, refetch])
 
     return (
         <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
@@ -65,11 +71,15 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
                 </div>
             </div>
             <div className="h-full flex flex-col justify-center overflow-y-auto">
-                <div className="grid grid-cols-2 gap-6">
-                    {page.map((airport) => (
-                        <Card key={airport.airport_id} airport={airport} />
-                    ))}
-                </div> 
+                {isLoading && <p>Cargando...</p>}
+                {isError && <p>Ocurrió un error al cargar los aeropuertos</p>}
+                {isSuccess && 
+                    <div className="grid grid-cols-2 gap-6">
+                        {page.map((airport) => (
+                            <Card key={airport.airport_id} airport={airport} />
+                        ))}
+                    </div>
+                }
             </div>
             <div className="flex justify-center items-center h-auto my-4">
                 <Paginator
