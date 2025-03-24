@@ -5,7 +5,6 @@ const getLocalTime = (utcTime: string, gmtOffset: string): string => {
     const utcDate = new Date(utcTime);
     const gmtOffsetMinutes = Number.parseInt(gmtOffset) * 60;
     const localDate = addMinutes(utcDate, gmtOffsetMinutes);
-    console.log(utcTime, gmtOffset, localDate.toUTCString(), );
     return `${localDate.getUTCDate()}/${localDate.getUTCMonth() + 1}/${localDate.getUTCFullYear()}, ${localDate.getUTCHours()}:${localDate.getUTCMinutes()}:${localDate.getUTCSeconds()}`;
 }
 

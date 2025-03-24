@@ -10,6 +10,7 @@ import Paginator from "./components/Paginator";
 import SpawnToUp from "@/shared/transitions/SpawnToUp";
 import ExplorerService from "./services/explorer.service";
 import type { Airport } from "@/shared/models/airport.model";
+import Link from "next/link";
 
 const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) => {
     const router = useRouter();
@@ -29,7 +30,6 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
     useEffect(() => {
         if (currentPage) {
             ExplorerService.GetAirports(currentPage - 1, 6).then((response) => {
-                console.log(response);
                 setPage(response.data);
             });
         }
@@ -39,9 +39,10 @@ const Explorer: React.FC<{ keywordParam?: string | null }> = ({ keywordParam }) 
     return (
         <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
             <div className="flex items-center justify-between mt-5 mb-6">
-                <h1 className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-4xl text-nowrap">
+                <Link href="/"
+                    className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-4xl text-nowrap cursor-pointer">
                     SkyConnect Explorer
-                </h1>
+                </Link>
                 <div className="w-full px-20">
                     <Input
                         htmlForLabel={""}
