@@ -1,6 +1,7 @@
 import type React from 'react';
-import InformationCircleIcon from '@public/icons/info-circle.svg';
-import DetailTabLayout from './DetailTabLayout';
+import ClockCircleIcon from '@public/icons/clock-circle.svg';
+import GlobalIcon from '@public/icons/global.svg';
+import DetailTabLayout from './shared/DetailTabLayout';
 
 interface DetailTimezoneTabProps {
     timeZone: string;
@@ -14,7 +15,7 @@ const DetailTimezoneTab: React.FC<DetailTimezoneTabProps> = ({ timeZone, gmt, ti
             <DetailTabLayout content={
                 <div>
                     <div className="flex items-center mb-10">
-                        <InformationCircleIcon className="scale-80 ml-[-10px]"/>
+                        <GlobalIcon className="scale-80 ml-[-10px]"/>
                         <h2 className="ml-2 text-3xl font-(family-name:--font-jumbo) font-bold bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent">Zona Horaria</h2>
                     </div>
                     <div className="text-xl space-y-4">
@@ -26,7 +27,7 @@ const DetailTimezoneTab: React.FC<DetailTimezoneTabProps> = ({ timeZone, gmt, ti
             <DetailTabLayout content={
                 <div>
                     <div className="flex items-center mb-10">
-                        <InformationCircleIcon className="scale-80 ml-[-10px]"/>
+                        <ClockCircleIcon className="scale-80 ml-[-10px]"/>
                         <h2 className="ml-2 text-3xl font-(family-name:--font-jumbo) font-bold bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent">Hora Local</h2>
                     </div>
                     <div className="text-xl space-y-4">

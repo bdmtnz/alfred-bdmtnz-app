@@ -1,6 +1,6 @@
 import type React from 'react';
 import InformationCircleIcon from '@public/icons/info-circle.svg';
-import DetailTabLayout from './DetailTabLayout';
+import DetailTabLayout from './shared/DetailTabLayout';
 
 interface DetailGeneralTabProps {
     iataCode: string;

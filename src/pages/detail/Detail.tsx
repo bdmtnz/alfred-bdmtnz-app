@@ -1,5 +1,6 @@
 import DetailGeneralTab from "./components/DetailGeneralTab";
 import DetailTimezoneTab from "./components/DetailTimezoneTab";
+import DetailUbicationTab from "./components/ubication/DetailUbicationTab";
 import Tabs from "./components/Tabs";
 
 const Detail: React.FC<{ numberParam?: string | null }> = ({ numberParam }) => {
@@ -21,7 +22,7 @@ const Detail: React.FC<{ numberParam?: string | null }> = ({ numberParam }) => {
                     key: 'tab-2',
                     label: 'Ubicación',
                     isDisabled: false,
-                    content: <div>Tab 2 content</div>
+                    content: <DetailUbicationTab geonameId="6947726" latitud="-17.05" longitud="-145.41667" />
                 },
                 { 
                     key: 'tab-3',
