@@ -3,7 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   env: {
     PUBLIC_API_URL: "https://api.aviationstack.com/v1",
-    PUBLIC_API_KEY: "e7beca7e9da3586c22e17db0542a86a1"
+    PUBLIC_API_KEY: "5c8f0e80ba66dbff26982aacdde4c386",
+    PUBLIC_MAPS_API_KEY: "AIzaSyBjD3wO_UKFT-PJ8IHJjix9EK1QCyVmxZc"
   },
   experimental: {
     turbo: {

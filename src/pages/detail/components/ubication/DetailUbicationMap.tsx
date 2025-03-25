@@ -14,7 +14,7 @@ const mapContainerStyle = {
 const DetailUbicationMap: React.FC<DetailUbicationMapProps> = ({ latitud, longitud }) => {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBjD3wO_UKFT-PJ8IHJjix9EK1QCyVmxZc",
+        googleMapsApiKey: process.env.PUBLIC_MAPS_API_KEY ?? '',
         libraries: ['geometry', 'drawing'],
     });
     
