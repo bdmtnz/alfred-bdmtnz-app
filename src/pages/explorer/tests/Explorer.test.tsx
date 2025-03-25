@@ -34,6 +34,7 @@ const renderWithProviders = (ui: React.ReactElement) => {
 describe('Explorer Component', () => {
     beforeAll(() => {
         mockUseExplorerStateManager.mockReturnValue({
+            isMobile: false,
             keyword: '',
             filtered: [],
             totalPages: 1,
