@@ -1,8 +1,31 @@
+# Alfred Bdmtnz App 🚀
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Getting Started 🛠️
 
-First, run the development server:
+First, clone the repository:
+
+```bash
+git clone https://github.com/bdmtnz/alfred-bdmtnz-app.git
+cd alfred-bdmtnz-app
+```
+
+Then, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### Running the Development Server 🖥️
+
+To start the development server, run:
 
 ```bash
 npm run dev
@@ -18,19 +41,49 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Environment Variables 🌐
 
-## Learn More
+Modify the `next.config.ts` file in the root of your project and add the necessary environment variables. For example:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+NEXT_PUBLIC_API_URL=https://api.example.com
+NEXT_PUBLIC_API_KEY=your_api_key
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Running Tests 🧪
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To run the tests, use:
 
-## Deploy on Vercel
+```bash
+npm run test
+# or
+yarn test
+# or
+pnpm test
+# or
+bun test
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Test Coverage 📊
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To generate a test coverage report, run:
+
+```bash
+npm run test:coverage
+# or
+yarn test:coverage
+# or
+pnpm test:coverage
+# or
+bun test:coverage
+```
+
+The coverage report will be available in the `coverage` directory.
+
+## Contact 📞
+
+For any inquiries, you can reach me at:
+
+- Developer: Brayan David Martinez Ojeda
+- GitHub: [bdmtnz](https://github.com/bdmtnz)
+- Phone: +57 3112468260
