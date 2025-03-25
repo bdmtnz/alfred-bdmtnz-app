@@ -4,11 +4,32 @@ import type { Airport } from '@/shared/models/airport.model';
 import '@testing-library/jest-dom';
 import useExplorerStateManager from '@/pages/explorer/hooks/explorer.hooks';
 import Explorer from '@/pages/explorer/Explorer';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { memoryRouter } from 'next-router-mock'; // Importa la función para crear un enrutador simulado
+import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime';
 
 // Mock the hook
 jest.mock('@/pages/explorer/hooks/explorer.hooks');
+jest.mock('next/router', () => ({
+    useRouter: jest.fn(),
+}));
+jest.mock('next/navigation', () => ({
+    useRouter: jest.fn(),
+}));
 
 const mockUseExplorerStateManager = useExplorerStateManager as jest.MockedFunction<typeof useExplorerStateManager>;
+
+const queryClient = new QueryClient();
+
+const renderWithProviders = (ui: React.ReactElement) => {
+    return render(
+        <RouterContext.Provider value={memoryRouter}>
+            <QueryClientProvider client={queryClient}>
+                {ui}
+            </QueryClientProvider>
+        </RouterContext.Provider>
+    );
+};
 
 describe('Explorer Component', () => {
     beforeAll(() => {
@@ -27,10 +48,10 @@ describe('Explorer Component', () => {
     });
 
     test('renders the Explorer component', () => {
-        render(<Explorer />);
+        renderWithProviders(<Explorer />);
         expect(screen.getByText('SkyConnect Explorer')).toBeInTheDocument();
         expect(screen.getByPlaceholderText('Buscar aeropuertos...')).toBeInTheDocument();
-        // expect(screen.getByText('Buscar')).toBeInTheDocument();
+        fireEvent.click(screen.getByTitle('own-button'));
     });
 
     test('calls handleSearchClick on search button click', () => {
@@ -40,8 +61,8 @@ describe('Explorer Component', () => {
             handleSearchClick,
         });
 
-        render(<Explorer />);
-        fireEvent.click(screen.getByText('Buscar'));
+        renderWithProviders(<Explorer />);
+        fireEvent.click(screen.getByTitle('own-button'));
         expect(handleSearchClick).toHaveBeenCalled();
     });
 
@@ -51,7 +72,7 @@ describe('Explorer Component', () => {
             isLoading: true,
         });
 
-        render(<Explorer/>);
+        renderWithProviders(<Explorer />);
         expect(screen.getByText('Cargando...')).toBeInTheDocument();
     });
 
@@ -61,7 +82,7 @@ describe('Explorer Component', () => {
             isError: true,
         });
 
-        render(<Explorer />);
+        renderWithProviders(<Explorer />);
         expect(screen.getByText('Límite de peticiones gratis alcanzada')).toBeInTheDocument();
     });
 
@@ -73,7 +94,7 @@ describe('Explorer Component', () => {
             keyword: 'test',
         });
 
-        render(<Explorer />);
+        renderWithProviders(<Explorer />);
         expect(screen.getByText('No se encontraron resultados para la busqueda con test')).toBeInTheDocument();
     });
 
@@ -117,12 +138,13 @@ describe('Explorer Component', () => {
 
         mockUseExplorerStateManager.mockReturnValueOnce({
             ...mockUseExplorerStateManager(),
-            keyword: 'Airport Taiwan',
+            keyword: '',
             isSuccess: true,
             filtered
         });
 
-        render(<Explorer />);
-        expect(screen.getByText('No se encontraron resultados para la busqueda con')).toBeInTheDocument();
+        renderWithProviders(<Explorer />);
+        expect(screen.getByText('Test Airport 1')).toBeInTheDocument();
+        expect(screen.getByText('Test Airport 2')).toBeInTheDocument();
     });
 });
