@@ -95,7 +95,7 @@ describe('Explorer Component', () => {
         });
 
         renderWithProviders(<Explorer />);
-        expect(screen.getByText('No se encontraron resultados para la busqueda con test')).toBeInTheDocument();
+        expect(screen.getByText('No se encontraron resultados para la búsqueda con test')).toBeInTheDocument();
     });
 
     test('displays filtered results', () => {
