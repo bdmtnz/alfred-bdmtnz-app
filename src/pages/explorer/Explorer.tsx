@@ -9,6 +9,7 @@ import SpawnToUp from "@/shared/transitions/SpawnToUp";
 import Link from "next/link";
 import useExplorerStateManager from "./hooks/explorer.hooks";
 import PaginatorMobile from "./components/PaginatorMobile";
+import FilteredCardContainer from "./components/FilteredCardContainer";
 
 const Explorer = () => {
     const {
@@ -56,13 +57,7 @@ const Explorer = () => {
             <div className="h-full flex flex-col justify-center overflow-y-auto">
                 {isLoading && <p className="font-bold text-center">Cargando...</p>}
                 {isError && <p className="font-bold text-center">Límite de peticiones gratis alcanzada</p>}
-                {isSuccess && 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                        {filtered.map((airport) => (
-                            <Card key={airport.airport_id} airport={airport} />
-                        ))}
-                    </div>
-                }
+                {isSuccess && <FilteredCardContainer items={filtered}/>}
                 {filtered.length === 0 && !isError && !isLoading && <p className="font-bold text-center">No se encontraron resultados para la búsqueda con {keyword}</p>}
             </div>
             <div className="flex justify-center items-center h-auto my-4">
