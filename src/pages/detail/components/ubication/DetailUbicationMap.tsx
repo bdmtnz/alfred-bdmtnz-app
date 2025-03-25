@@ -9,6 +9,8 @@ interface DetailUbicationMapProps {
 const mapContainerStyle = {
     width: '100%',
     height: 'inherit',
+    border: '1px solid white',
+    borderRadius: '.25rem',
 };
 
 const DetailUbicationMap: React.FC<DetailUbicationMapProps> = ({ latitud, longitud }) => {
