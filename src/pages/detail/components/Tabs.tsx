@@ -18,7 +18,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs }) => {
     const [activeTab, setActiveTab] = useState(0);
 
     return (
-        <div className='flex flex-col gap-14'>
+        <div className='flex flex-col gap-7 sm:gap-14'>
             <div className="flex bg-[#3F495F] p-2 rounded-sm">
                 {tabs.map((tab, index) => (
                     <button
