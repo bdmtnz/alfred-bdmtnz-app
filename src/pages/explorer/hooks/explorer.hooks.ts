@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import type { Airport } from "@/shared/models/airport.model";
 import useGetAirports from "./data.hooks";
 import { globalStore } from "@/shared/stores/global.store";
+import { useMediaQuery } from "react-responsive";
 
 const useExplorerStateManager = () => {
+    const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
     const {keyword, setKeyword} = globalStore.getState();
     const [keywordParam, setKeywordParam] = useState<string>(keyword);
     const [currentPage, setCurrentPage] = useState(1);
@@ -57,6 +59,7 @@ const useExplorerStateManager = () => {
     }, [currentPage])
 
     return {
+        isMobile,
         keyword: keywordParam,
         filtered,
         totalPages,

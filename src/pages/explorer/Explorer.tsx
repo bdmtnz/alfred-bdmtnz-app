@@ -8,9 +8,11 @@ import Paginator from "./components/Paginator";
 import SpawnToUp from "@/shared/transitions/SpawnToUp";
 import Link from "next/link";
 import useExplorerStateManager from "./hooks/explorer.hooks";
+import PaginatorMobile from "./components/PaginatorMobile";
 
 const Explorer = () => {
     const {
+        isMobile,
         keyword,
         filtered,
         totalPages,
@@ -24,13 +26,13 @@ const Explorer = () => {
     } = useExplorerStateManager();
 
     return (
-        <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
-            <div className="flex items-center justify-between mt-5 mb-6">
+        <SpawnToUp className="page flex flex-col gap-4 bg-transparent p-4 sm:p-6 md:p-8">
+            <div className="flex flex-col sm:flex-row items-center justify-between mt-5 mb-6">
                 <Link href="/"
-                    className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-4xl text-nowrap cursor-pointer">
+                    className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-2xl sm:text-3xl md:text-4xl text-nowrap cursor-pointer mb-4 sm:mb-0">
                     SkyConnect Explorer
                 </Link>
-                <div className="w-full px-20">
+                <div className="w-full sm:w-auto sm:flex-1 px-0 sm:px-10 md:px-20 mb-4 sm:mb-0">
                     <Input
                         htmlForLabel={""}
                         label={""}
@@ -43,7 +45,7 @@ const Explorer = () => {
                         name={"KeywordEntry"}
                     />
                 </div>
-                <div className="grid w-[218px]">
+                <div className="grid w-full sm:w-[218px]">
                     <Button
                         icon={<MagnifierIcon/>}
                         onClick={handleSearchClick}
@@ -55,20 +57,28 @@ const Explorer = () => {
                 {isLoading && <p className="font-bold text-center">Cargando...</p>}
                 {isError && <p className="font-bold text-center">Límite de peticiones gratis alcanzada</p>}
                 {isSuccess && 
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         {filtered.map((airport) => (
                             <Card key={airport.airport_id} airport={airport} />
                         ))}
                     </div>
                 }
-                {filtered.length === 0 && !isError && !isLoading && <p className="font-bold text-center">No se encontraron resultados para la busqueda con {keyword}</p>}
+                {filtered.length === 0 && !isError && !isLoading && <p className="font-bold text-center">No se encontraron resultados para la búsqueda con {keyword}</p>}
             </div>
             <div className="flex justify-center items-center h-auto my-4">
-                <Paginator
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
-                />
+                {isMobile ? (
+                    <PaginatorMobile
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
+                ) : (
+                    <Paginator
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
+                )}
             </div>     
         </SpawnToUp>
     );

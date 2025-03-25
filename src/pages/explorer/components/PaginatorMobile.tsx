@@ -1,12 +1,12 @@
 import type React from 'react';
 
-interface PaginatorProps {
+interface PaginatorMobileProps {
     currentPage: number;
     totalPages: number;
     onPageChange: (page: number) => void;
 }
 
-const Paginator: React.FC<PaginatorProps> = ({ currentPage, totalPages, onPageChange }) => {
+const PaginatorMobile: React.FC<PaginatorMobileProps> = ({ currentPage, totalPages, onPageChange }) => {
     const handlePrevious = () => {
         if (currentPage > 1) {
             onPageChange(currentPage - 1);
@@ -30,12 +30,12 @@ const Paginator: React.FC<PaginatorProps> = ({ currentPage, totalPages, onPageCh
                 pages.push(i);
             }
         } else {
-            if (currentPage <= 2) {
-                pages.push(1, 2, '...', totalPages);
-            } else if (currentPage >= totalPages - 1) {
-                pages.push(1, '...', totalPages - 1, totalPages);
+            if (currentPage <= 1) {
+                pages.push(1, '...', totalPages);
+            } else if (currentPage >= totalPages) {
+                pages.push(1, '...', totalPages);
             } else {
-                pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+                pages.push(1, currentPage, totalPages);
             }
         }
         return pages;
@@ -74,4 +74,4 @@ const Paginator: React.FC<PaginatorProps> = ({ currentPage, totalPages, onPageCh
     );
 };
 
-export default Paginator;
+export default PaginatorMobile;
