@@ -103,7 +103,6 @@ const config = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@public/(.*)$': '<rootDir>/public/$1',
-    '\\.svg$': '<rootDir>/__mocks__/svg.js',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -190,10 +189,7 @@ const config = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    "^.+\.tsx?$": "ts-jest",
-    // "^.+\\.svg$": "jest-transformer-svg",
-    "^.+\\.css$": "jest-transform-css",
-    "^.+\\.(png|svg|jpe?g|gif)$": "jest-filename-transform"
+    "^.+\.tsx?$": "ts-jest"
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
@@ -227,5 +223,4 @@ const jestConfigWithOverrides = async (...args) => {
   return res;
 };
 
-// module.exports = createJestConfig(config);
 module.exports = jestConfigWithOverrides;

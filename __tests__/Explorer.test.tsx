@@ -33,96 +33,96 @@ describe('Explorer Component', () => {
         // expect(screen.getByText('Buscar')).toBeInTheDocument();
     });
 
-    // test('calls handleSearchClick on search button click', () => {
-    //     const handleSearchClick = jest.fn();
-    //     mockUseExplorerStateManager.mockReturnValueOnce({
-    //         ...mockUseExplorerStateManager(),
-    //         handleSearchClick,
-    //     });
+    test('calls handleSearchClick on search button click', () => {
+        const handleSearchClick = jest.fn();
+        mockUseExplorerStateManager.mockReturnValueOnce({
+            ...mockUseExplorerStateManager(),
+            handleSearchClick,
+        });
 
-    //     render(<Explorer />);
-    //     fireEvent.click(screen.getByText('Buscar'));
-    //     expect(handleSearchClick).toHaveBeenCalled();
-    // });
+        render(<Explorer />);
+        fireEvent.click(screen.getByText('Buscar'));
+        expect(handleSearchClick).toHaveBeenCalled();
+    });
 
-    // test('displays loading state', () => {
-    //     mockUseExplorerStateManager.mockReturnValueOnce({
-    //         ...mockUseExplorerStateManager(),
-    //         isLoading: true,
-    //     });
+    test('displays loading state', () => {
+        mockUseExplorerStateManager.mockReturnValueOnce({
+            ...mockUseExplorerStateManager(),
+            isLoading: true,
+        });
 
-    //     render(<Explorer/>);
-    //     expect(screen.getByText('Cargando...')).toBeInTheDocument();
-    // });
+        render(<Explorer/>);
+        expect(screen.getByText('Cargando...')).toBeInTheDocument();
+    });
 
-    // test('displays error state', () => {
-    //     mockUseExplorerStateManager.mockReturnValueOnce({
-    //         ...mockUseExplorerStateManager(),
-    //         isError: true,
-    //     });
+    test('displays error state', () => {
+        mockUseExplorerStateManager.mockReturnValueOnce({
+            ...mockUseExplorerStateManager(),
+            isError: true,
+        });
 
-    //     render(<Explorer />);
-    //     expect(screen.getByText('Límite de peticiones gratis alcanzada')).toBeInTheDocument();
-    // });
+        render(<Explorer />);
+        expect(screen.getByText('Límite de peticiones gratis alcanzada')).toBeInTheDocument();
+    });
 
-    // test('displays no results message', () => {
-    //     mockUseExplorerStateManager.mockReturnValueOnce({
-    //         ...mockUseExplorerStateManager(),
-    //         isSuccess: true,
-    //         filtered: [],
-    //         keyword: 'test',
-    //     });
+    test('displays no results message', () => {
+        mockUseExplorerStateManager.mockReturnValueOnce({
+            ...mockUseExplorerStateManager(),
+            isSuccess: true,
+            filtered: [],
+            keyword: 'test',
+        });
 
-    //     render(<Explorer />);
-    //     expect(screen.getByText('No se encontraron resultados para la busqueda con test')).toBeInTheDocument();
-    // });
+        render(<Explorer />);
+        expect(screen.getByText('No se encontraron resultados para la busqueda con test')).toBeInTheDocument();
+    });
 
-    // test('displays filtered results', () => {
-    //     const filtered: Airport[] = [
-    //         {
-    //             airport_id: '1', airport_name: 'Test Airport 1',
-    //             id: '',
-    //             gmt: '',
-    //             iata_code: '',
-    //             city_iata_code: '',
-    //             icao_code: '',
-    //             country_iso2: '',
-    //             geoname_id: '',
-    //             latitude: '',
-    //             longitude: '',
-    //             country_name: '',
-    //             phone_number: null,
-    //             timezone: '',
-    //             location: '',
-    //             time: ''
-    //         },
-    //         {
-    //             airport_id: '2', airport_name: 'Test Airport 2',
-    //             id: '',
-    //             gmt: '',
-    //             iata_code: '',
-    //             city_iata_code: '',
-    //             icao_code: '',
-    //             country_iso2: '',
-    //             geoname_id: '',
-    //             latitude: '',
-    //             longitude: '',
-    //             country_name: '',
-    //             phone_number: null,
-    //             timezone: '',
-    //             location: '',
-    //             time: ''
-    //         },
-    //     ];
+    test('displays filtered results', () => {
+        const filtered: Airport[] = [
+            {
+                airport_id: '1', airport_name: 'Test Airport 1',
+                id: '',
+                gmt: '',
+                iata_code: '',
+                city_iata_code: '',
+                icao_code: '',
+                country_iso2: '',
+                geoname_id: '',
+                latitude: '',
+                longitude: '',
+                country_name: '',
+                phone_number: null,
+                timezone: '',
+                location: '',
+                time: ''
+            },
+            {
+                airport_id: '2', airport_name: 'Test Airport 2',
+                id: '',
+                gmt: '',
+                iata_code: '',
+                city_iata_code: '',
+                icao_code: '',
+                country_iso2: '',
+                geoname_id: '',
+                latitude: '',
+                longitude: '',
+                country_name: '',
+                phone_number: null,
+                timezone: '',
+                location: '',
+                time: ''
+            },
+        ];
 
-    //     mockUseExplorerStateManager.mockReturnValueOnce({
-    //         ...mockUseExplorerStateManager(),
-    //         isSuccess: true,
-    //         filtered
-    //     });
+        mockUseExplorerStateManager.mockReturnValueOnce({
+            ...mockUseExplorerStateManager(),
+            keyword: 'Airport Taiwan',
+            isSuccess: true,
+            filtered
+        });
 
-    //     render(<Explorer />);
-    //     expect(screen.getByText('Test Airport 1')).toBeInTheDocument();
-    //     expect(screen.getByText('Test Airport 2')).toBeInTheDocument();
-    // });
+        render(<Explorer />);
+        expect(screen.getByText('No se encontraron resultados para la busqueda con')).toBeInTheDocument();
+    });
 });
