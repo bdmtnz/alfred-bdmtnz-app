@@ -2,6 +2,24 @@
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Project Architecture 🏗️
+
+Este proyecto sigue una arquitectura basada en [Next.js](https://nextjs.org) y screaming architecture.
+
+### Directorios Principales
+
+- **public/**: Contiene archivos estáticos que se sirven directamente, como imágenes y fuentes.
+- **src/**: Contiene todo el código fuente de la aplicación, incluyendo componentes, páginas, estilos y utilidades.
+
+### Archivos Importantes
+
+- **next.config.ts**: Archivo de configuración de Next.js donde puedes ajustar el comportamiento del framework.
+- **tsconfig.json**: Archivo de configuración de TypeScript para definir cómo se debe compilar el código TypeScript.
+- **jest.config.js**: Configuración de Jest para definir cómo se deben ejecutar las pruebas unitarias.
+- **package.json**: Contiene las dependencias del proyecto y scripts útiles para tareas comunes como iniciar el servidor de desarrollo, ejecutar pruebas, etc.
+
+Esta estructura está diseñada para mantener el código organizado y facilitar el desarrollo y mantenimiento del proyecto.
+
 ## Getting Started 🛠️
 
 First, clone the repository:
