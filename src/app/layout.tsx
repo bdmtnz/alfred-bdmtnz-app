@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className="antialiased bg-cover bg-center"
+        className="antialiased bg-cover bg-center p-6 sm:p-8 md:px-14 md:py:8"
       >
         {children}
       </body>

@@ -26,7 +26,7 @@ const Explorer = () => {
     } = useExplorerStateManager();
 
     return (
-        <SpawnToUp className="page flex flex-col gap-4 bg-transparent p-4 sm:p-6 md:p-8">
+        <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
             <div className="flex flex-col sm:flex-row items-center justify-between mt-5 mb-6">
                 <Link href="/"
                     className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-2xl sm:text-3xl md:text-4xl text-nowrap cursor-pointer mb-4 sm:mb-0">
