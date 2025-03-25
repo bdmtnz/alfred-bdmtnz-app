@@ -27,12 +27,12 @@ const Explorer = () => {
 
     return (
         <SpawnToUp className="page flex flex-col gap-4 bg-transparent">
-            <div className="flex flex-col sm:flex-row items-center justify-between mt-5 mb-6">
+            <div className="flex flex-col xl:flex-row items-center justify-between mt-5 mb-6">
                 <Link href="/"
-                    className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-2xl sm:text-3xl md:text-4xl text-nowrap cursor-pointer mb-4 sm:mb-0">
+                    className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-center text-4xl sm:text-5xl md:text-6xl xl:text-4xl sm:text-left md:text-nowrap cursor-pointer mb-4 xl:mb-0">
                     SkyConnect Explorer
                 </Link>
-                <div className="w-full sm:w-auto sm:flex-1 px-0 sm:px-10 md:px-20 mb-4 sm:mb-0">
+                <div className="w-full xl:w-auto xl:flex-1 px-0 xl:px-10 mb-4 xl:mb-0">
                     <Input
                         htmlForLabel={""}
                         label={""}
@@ -45,7 +45,7 @@ const Explorer = () => {
                         name={"KeywordEntry"}
                     />
                 </div>
-                <div className="grid w-full sm:w-[218px]">
+                <div className="grid w-full xl:w-auto">
                     <Button
                         icon={<MagnifierIcon/>}
                         onClick={handleSearchClick}
