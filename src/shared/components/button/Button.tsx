@@ -1,9 +1,7 @@
-import type { JSX } from "react";
-
 interface ButtonProps {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
     text?: string;
-    icon?: JSX.Element;
+    icon?: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, icon, text }) => {

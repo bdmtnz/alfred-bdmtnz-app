@@ -9,7 +9,7 @@ import SpawnToUp from "@/shared/transitions/SpawnToUp";
 import Link from "next/link";
 import useExplorerStateManager from "./hooks/explorer.hooks";
 
-const Explorer: React.FC = () => {
+const Explorer = () => {
     const {
         keyword,
         filtered,
