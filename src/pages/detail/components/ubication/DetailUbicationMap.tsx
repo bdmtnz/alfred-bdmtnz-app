@@ -8,7 +8,7 @@ interface DetailUbicationMapProps {
 
 const mapContainerStyle = {
     width: '100%',
-    height: '400px',
+    height: 'inherit',
 };
 
 const DetailUbicationMap: React.FC<DetailUbicationMapProps> = ({ latitud, longitud }) => {
@@ -24,7 +24,7 @@ const DetailUbicationMap: React.FC<DetailUbicationMapProps> = ({ latitud, longit
     };
 
     return (
-        <>
+        <div className='relative h-[300px] sm:h-[400px]'>
             {isLoaded && 
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
@@ -34,7 +34,7 @@ const DetailUbicationMap: React.FC<DetailUbicationMapProps> = ({ latitud, longit
                     <Marker position={center} />
                 </GoogleMap>
             }
-        </>
+        </div>
     );
 };
 
