@@ -14,11 +14,11 @@ const Home: React.FC = () => {
     } = useHomeStateManager();
     
     return (
-        <SpawnToUp className="flex flex-col bg-transparent items-center justify-center gap-[170px]">
-            <h1 className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-8xl text-center">
+        <SpawnToUp className="flex flex-col bg-transparent items-center justify-center gap-10 sm:gap-[85px] md:gap-[120px]">
+            <h1 className="bg-gradient-to-r from-[#006AFF] to-[#00DBFF] bg-clip-text text-transparent font-(family-name:--font-jumbo) text-4xl sm:text-[59px] md:text-[89px] text-center">
                 SkyConnect Explorer
             </h1>
-            <div className="w-full items-center flex flex-col gap-10">
+            <div className="w-full items-center flex flex-col gap-10 sm:mb-[200px]">
                 <div className="max-w-[780px] w-full">
                     <Input
                         htmlForLabel={""}
